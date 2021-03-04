@@ -3,6 +3,7 @@ package com.music.player.tdd.integrationTests;
 import com.music.player.tdd.TestUtils.TestSongs;
 import com.music.player.tdd.models.Song;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class SongIntegrationTests {
 
+    @Autowired
     private TestRestTemplate restTemplate;
 
     @Test
@@ -23,7 +25,7 @@ public class SongIntegrationTests {
 
         Song postedSong  = response.getBody();
 
-        assertEquals(response.getStatusCode(), HttpStatus.OK);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
         assertAll("song posted",
                 ()->assertNotNull(postedSong.getId()),
                 ()->assertEquals(postedSong.getTitle(),TestSongs.getSongs().get(0).getTitle()),
