@@ -3,20 +3,32 @@ package com.music.player.tdd.models;
 import java.time.Duration;
 
 public class Song {
+
+	private Long Id;
 	private String title;
 	private String artist;
 	private Duration length;
-	
+
+
 	public Song() {
-		
+
 	}
-	
+
 	public Song(String title, String artist, Duration length) {
 		super();
 		this.title = title;
 		this.artist = artist;
 		this.length = length;
 	}
+
+	public Long getId() {
+		return Id;
+	}
+
+	public void setId(Long id) {
+		Id = id;
+	}
+
 	public String getTitle() {
 		return this.title;
 	}
