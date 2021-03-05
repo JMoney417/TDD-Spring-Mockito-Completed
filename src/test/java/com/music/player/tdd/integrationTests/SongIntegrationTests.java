@@ -37,7 +37,9 @@ public class SongIntegrationTests {
 
     @Test
     public void getAllSongs_returnsAllSongs(){
-        ResponseEntity<Object[]> songs = restTemplate.getForEntity("/songs",Object[].class);
+        ResponseEntity<Song[]> response = restTemplate.getForEntity("/songs",Song[].class);
+        Song[] songs = response.getBody();
+
     }
 
 }
