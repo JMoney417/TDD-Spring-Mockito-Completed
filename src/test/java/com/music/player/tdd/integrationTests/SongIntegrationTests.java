@@ -9,6 +9,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
@@ -31,6 +33,11 @@ public class SongIntegrationTests {
                 ()->assertEquals(postedSong.getTitle(),TestSongs.getSongs().get(0).getTitle()),
                 ()->assertEquals(postedSong.getArtist(),TestSongs.getSongs().get(0).getArtist()));
 
+    }
+
+    @Test
+    public void getAllSongs_returnsAllSongs(){
+        ResponseEntity<Object[]> songs = restTemplate.getForEntity("/songs",Object[].class);
     }
 
 }

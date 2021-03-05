@@ -1,13 +1,19 @@
 package com.music.player.tdd.models;
 
-import java.time.Duration;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Entity
 public class Playlist {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private String name;
+
+	@ManyToMany
 	private List<Song> songlist;
 	
 	public Playlist() {
