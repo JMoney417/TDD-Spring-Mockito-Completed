@@ -16,7 +16,6 @@ public class Song {
 	private String artist;
 	private Duration length;
 
-
 	public Song() {
 
 	}
