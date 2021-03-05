@@ -1,5 +1,7 @@
 package com.music.player.tdd.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +16,7 @@ public class Song {
 	private Long Id;
 	private String title;
 	private String artist;
+	@JsonProperty( value = "duration")
 	private Duration length;
 
 	public Song() {
