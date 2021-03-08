@@ -38,6 +38,6 @@ public class SongsAPIStepdefs {
         assertAll("Song was posted and reflected back with id",
                 ()->assertNotNull(actualSong.getId()),
                 ()->assertEquals(actualSong.getTitle(),song.getTitle()),
-                ()->assertEquals(actualSong.getArtist(),song.getArtist());
+                ()->assertEquals(actualSong.getArtist(),song.getArtist()));
     }
 }
