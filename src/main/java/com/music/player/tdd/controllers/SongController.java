@@ -1,7 +1,9 @@
 package com.music.player.tdd.controllers;
 
 import com.music.player.tdd.models.Song;
+import com.music.player.tdd.repositories.SongRepository;
 import com.music.player.tdd.services.SongService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SongController {
 
     private SongService songService;
+
 
     public SongController(SongService songService){
         this.songService = songService;
