@@ -30,4 +30,12 @@ public class SongServiceTests {
         verify(songRepository,times(1)).save(song);
     }
 
+    @Test
+    public void findSongByTitle_should_call_repo_with_title(){
+        //testing to make sure service method is calling the appropriate repo method
+        //with the correct arguments
+        songService.findSongsByTitle("Africa");
+        verify(songRepository,times(1)).findAllByTitle("Africa");
+    }
+
 }

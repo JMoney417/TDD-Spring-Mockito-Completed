@@ -6,10 +6,9 @@ import com.music.player.tdd.services.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/songs")
@@ -23,10 +22,15 @@ public class SongController {
     }
 
     @PostMapping("/song")
-    private ResponseEntity<Song> postSong(@RequestBody Song song){
+    public ResponseEntity<Song> postSong(@RequestBody Song song){
         Song savedSong = this.songService.saveSong(song);
         HttpStatus status = HttpStatus.OK;
 
         return new ResponseEntity<>(savedSong,status);
+    }
+
+    @GetMapping("/byTitle/{title}")
+    public List<Song> getSongsByTitle(@PathVariable String title){
+        return this.songService.findSongsByTitle(title);
     }
 }

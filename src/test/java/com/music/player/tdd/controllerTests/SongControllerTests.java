@@ -41,4 +41,12 @@ public class SongControllerTests {
         verify(songService, times(1)).saveSong(any(Song.class));
 
     }
+
+    @Test
+    public void getSongsByTitle_returns_songs_with_that_title() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/songs/byTitle/Tadow"));
+        verify(songService, times(1)).findSongsByTitle("Tadow");
+    }
+
+
 }
