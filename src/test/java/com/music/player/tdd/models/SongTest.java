@@ -11,7 +11,7 @@ public class SongTest {
 	@Test
 	public void getPrettyDurationTest() {
 		//Arrange
-		Song mySong = new Song("Tadow","FKJ and Masego", Duration.ofSeconds(205));
+		Song mySong = new Song("Tadow","FKJ and Masego", 205);
 		//Act
 		String prettyResult  = mySong.getDurationPretty();
 		String expectedResult = String.format("%d:%02d:%02d",0,3,25);
