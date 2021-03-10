@@ -43,7 +43,7 @@ public class SongControllerTests {
     }
 
     @Test
-    public void getSongsByTitle_returns_songs_with_that_title() throws Exception {
+    public void getSongsByTitle_calls_Service_findSongsByTitle() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/songs/byTitle/Tadow"));
         verify(songService, times(1)).findSongsByTitle("Tadow");
     }

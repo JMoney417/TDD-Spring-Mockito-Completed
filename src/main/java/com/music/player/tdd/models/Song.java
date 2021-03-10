@@ -16,14 +16,13 @@ public class Song {
 	private Long Id;
 	private String title;
 	private String artist;
-	@JsonProperty( value = "duration")
-	private Duration length;
+	private int length;
 
 	public Song() {
 
 	}
 
-	public Song(String title, String artist, Duration length) {
+	public Song(String title, String artist, int length) {
 		super();
 		this.title = title;
 		this.artist = artist;
@@ -50,15 +49,15 @@ public class Song {
 	public void setArtist(String artist) {
 		this.artist = artist;
 	}
-	public Duration getDuration() {
+	public int getLength() {
 		return length;
 	}
-	public void setDuration(Duration length) {
+	public void setLength(int length) {
 		this.length = length;
 	}
 
 	public String getDurationPretty() {
-		long ts = length.getSeconds();
+		long ts = length;
 		return String.format("%d:%02d:%02d",ts/3600,(ts-(ts/3600))/60, ts%60);
 	}
 

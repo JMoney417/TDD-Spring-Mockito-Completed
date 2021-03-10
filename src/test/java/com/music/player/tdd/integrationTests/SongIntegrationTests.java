@@ -4,8 +4,12 @@ import com.music.player.tdd.TestUtils.TestSongs;
 import com.music.player.tdd.models.Song;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -19,6 +23,7 @@ public class SongIntegrationTests {
 
     @Autowired
     private TestRestTemplate restTemplate;
+
 
     @Test
     public void posting_a_song_saves_the_song(){
@@ -40,6 +45,27 @@ public class SongIntegrationTests {
         ResponseEntity<Song[]> response = restTemplate.getForEntity("/songs",Song[].class);
         Song[] songs = response.getBody();
 
+    }
+
+    @Test
+    public void getAllSongsByTitle_endpoint_returns_songs_with_that_title(){
+        //arrange
+        TestSongs.getSongs().forEach(song->restTemplate.postForEntity("/songs/song",song,Song.class));
+
+        //act
+        ResponseEntity<List<Song>> response = restTemplate.exchange(
+                "/songs/byTitle/Africa",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Song>>() {
+                }
+        );
+
+        List<Song> songs = response.getBody();
+        //assert
+        assertEquals(response.getStatusCode(),HttpStatus.OK);
+        assertEquals(2,songs.size());
+        songs.forEach(song-> assertEquals(song.getTitle(),"Africa"));
     }
 
 }
